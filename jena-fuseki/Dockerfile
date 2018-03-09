@@ -56,6 +56,7 @@ RUN     wget -O fuseki.tar.gz $FUSEKI_MIRROR/jena/binaries/apache-jena-fuseki-$F
 # (which we'll generate on start-up)
 COPY shiro.ini /jena-fuseki/shiro.ini
 COPY docker-entrypoint.sh /
+COPY fuseki-scdb-describe-1.0.0-SNAPSHOT.jar /
 RUN chmod 755 /docker-entrypoint.sh
 
 
@@ -69,4 +70,4 @@ RUN chmod 755 /jena-fuseki/load.sh /jena-fuseki/tdbloader
 WORKDIR /jena-fuseki
 EXPOSE 3030
 ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["/jena-fuseki/fuseki-server"]
+CMD ["java","-cp","/jena-fuseki/fuseki-server.jar:/fuseki-scdb-describe-1.0.0-SNAPSHOT.jar", "org.apache.jena.fuseki.cmd.FusekiCmd"]
