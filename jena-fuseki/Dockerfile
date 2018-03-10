@@ -55,6 +55,7 @@ RUN     wget -O fuseki.tar.gz $FUSEKI_MIRROR/jena/binaries/apache-jena-fuseki-$F
 # we'll enable basic-auth with a random admin password
 # (which we'll generate on start-up)
 COPY shiro.ini /jena-fuseki/shiro.ini
+COPY config-tdb /jena-fuseki/config-tdb
 COPY docker-entrypoint.sh /
 COPY fuseki-scdb-describe-1.0.0-SNAPSHOT.jar /
 RUN chmod 755 /docker-entrypoint.sh

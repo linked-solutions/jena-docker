@@ -28,6 +28,9 @@ if [ ! -f "$FUSEKI_BASE/shiro.ini" ] ; then
     echo ""
     echo "admin=$ADMIN_PASSWORD"
   fi
+  echo "Adding templates for UnionDefaultGraph"
+  mkdir "$FUSEKI_BASE/templates"
+  cp "$FUSEKI_HOME/config-tdb" "$FUSEKI_BASE/templates/config-tdb"
   echo ""
   echo "###################################"
 fi
